@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "CommonJS",
+    "rootDir": "./",
+    "paths": {
+      "@Core/*": [
+        "./src/core/*"
+      ],
+      "@Domain/*": [
+        "./src/domain/*"
+      ],
+      "@Application/*": [
+        "./src/application/*"
+      ],
+      "@Persistence/*": [
+        "./src/persistence/*"
+      ],
+      "@Infra/*": [
+        "./src/infra/*"
+      ],
+      "@Testing/*": [
+        "./test/*"
+      ],
+    },
+    "resolveJsonModule": true,
+    "outDir": "./dist",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true
+  }
+}
