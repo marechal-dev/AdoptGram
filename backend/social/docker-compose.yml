@@ -1,0 +1,39 @@
+version: '3.8'
+
+volumes:
+  db-data:
+    driver: local
+
+services:
+  database:
+    image: bitnami/postgresql
+    container_name: "adoptgram-auth-pg-db"
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=adoptgram_social
+    volumes:
+      - 'db-data:/bitnami/postgresql'
+  
+  dev:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - database
+    volumes:
+      - .:/usr/app
+  
+  prod:
+    build:
+      context: .
+      dockerfile: prod.Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - database
