@@ -1,16 +1,8 @@
-import {
-  KeyboardTypeOptions,
-  NativeSyntheticEvent,
-  ReturnKeyTypeOptions,
-  TextInput,
-  TextInputFocusEventData,
-  TextInputProps,
-  TextInputSubmitEditingEventData,
-  View,
-} from "react-native"
+import { TextInput, TextInputProps, View } from "react-native"
 
 import { styles } from "./style"
 import { colors } from "../../../theme/colors"
+import { RefCallback } from "react"
 
 export type BrandInputProps = TextInputProps
 
