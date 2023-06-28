@@ -1,15 +1,14 @@
 import { NestFactory } from '@nestjs/core';
-import { VersioningType } from '@nestjs/common';
 import {
   FastifyAdapter,
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import env from '@Configs/env';
 import corsOptions from '@Configs/cors';
 
 import { AppModule } from './app.module';
+import { setupDevelopmentConfigs } from '@Configs/setup-dev';
 
 const APP_HOST = '0.0.0.0';
 
@@ -25,26 +24,10 @@ async function bootstrap() {
 
   app.enableCors(corsOptions);
 
-  app.enableVersioning({
-    type: VersioningType.URI,
-  });
+  app.setGlobalPrefix('api');
 
   if (isDevEnv) {
-    const swaggerConfig = new DocumentBuilder()
-      .setTitle('AdoptGram Authentication API')
-      .setDescription('AdoptGram Authentication API Documentation.')
-      .setContact(
-        'Pietro Piva Vieira',
-        'https://github.com/marechal-dev',
-        'pietro.developer@gmail.com',
-      )
-      .setVersion('1.0')
-      .addTag('common-users')
-      .addTag('non-governamental-organizations')
-      .build();
-    const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig);
-
-    SwaggerModule.setup('api-docs', app, swaggerDocument);
+    setupDevelopmentConfigs(app);
   }
 
   await app.listen(env.PORT, APP_HOST);

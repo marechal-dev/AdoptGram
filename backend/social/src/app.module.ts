@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common';
-import { PersistenceModule } from './infra/persistence/persistence.module';
-import { HttpModule } from '@Infra/http/http.module';
+import { InfraModule } from '@Infra/infra.module';
 
 @Module({
-  imports: [PersistenceModule, HttpModule],
+  imports: [InfraModule],
 })
 export class AppModule {}

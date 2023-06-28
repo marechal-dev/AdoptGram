@@ -1,8 +1,10 @@
-FROM node:lts-alpine AS build
+FROM node:lts-alpine
+
+RUN apk install musl
 
 WORKDIR /usr/app
 
-COPY package.json .
+COPY package*.json .
 
 RUN npm install
 

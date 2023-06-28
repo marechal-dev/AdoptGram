@@ -7,7 +7,7 @@ volumes:
 services:
   database:
     image: bitnami/postgresql
-    container_name: "adoptgram-auth-pg-db"
+    container_name: "adoptgram-social-pg-db"
     restart: always
     ports:
       - 5432:5432
@@ -17,22 +17,22 @@ services:
       - POSTGRESQL_DATABASE=adoptgram_social
     volumes:
       - 'db-data:/bitnami/postgresql'
-  
+
   dev:
-    build:
-      context: .
-      dockerfile: dev.Dockerfile
+    build: "./.docker/dev"
     ports:
       - 3000:3000
+    environment:
+      NODE_ENV: development
     depends_on:
       - database
     volumes:
       - .:/usr/app
-  
+
   prod:
-    build:
-      context: .
-      dockerfile: prod.Dockerfile
+    build: "./.docker/prod"
+    environment:
+      NODE_ENV: production
     ports:
       - 3000:3000
     depends_on:
