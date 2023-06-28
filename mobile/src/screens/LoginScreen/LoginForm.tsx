@@ -1,74 +1,67 @@
-import { useRef } from "react"
-
 import { View } from "react-native"
 
-import { Formik } from "formik"
+import { z } from "zod"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 
-import { BrandInput } from "../../core/components/BrandInput/BrandInput"
 import { PressableText } from "../../core/components/PressableText/PressableText"
 import { BrandButton } from "../../core/components/BrandButton/BrandButton"
+import { ControlledInput } from "../../core/components/ControlledInput/ControlledInput"
 
 import { styles } from "./style"
 
-type LoginFormFields = {
-  email: string
-  password: string
-}
+const loginFormSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8),
+})
+type LoginFormData = z.infer<typeof loginFormSchema>
 
 type LoginFormProps = {
   onForgotPasswordPressHandler: () => void
 }
 
 export function LoginForm({ onForgotPasswordPressHandler }: LoginFormProps) {
-  const ref = useRef<JSX.Element>(null)
+  const { control, handleSubmit } = useForm<LoginFormData>({
+    resolver: zodResolver(loginFormSchema),
+  })
 
-  const initialValues: LoginFormFields = {
-    email: "",
-    password: "",
+  function handleLoginFormSubmit(data: LoginFormData) {
+    console.log(data)
   }
 
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={(values: LoginFormFields) => console.log(values)}
-    >
-      {({ handleChange, handleBlur, handleSubmit, values }) => (
-        <View style={styles.inputsContainer}>
-          <BrandInput
-            onChangeHandler={handleChange("email")}
-            placeholder="Email"
-            value={values.email}
-            returnKeyType="next"
-            onBlurHandler={() => handleBlur("email")}
-            keyboardType="email-address"
-          />
-          <BrandInput
-            onChangeHandler={handleChange("password")}
-            placeholder="Senha"
-            value={values.password}
-            returnKeyType="done"
-            isPasswordField={true}
-            onBlurHandler={() => handleBlur("password")}
-            keyboardType="default"
-          />
-          <PressableText
-            onPressHandler={onForgotPasswordPressHandler}
-            pressableStyle={styles.forgotPasswordWrapper}
-            textStyle={styles.forgotPasswordText}
-          >
-            Esqueci minha senha
-          </PressableText>
+    <View style={styles.inputsContainer}>
+      <ControlledInput
+        name="email"
+        control={control}
+        placeholder="Email"
+        keyboardType="email-address"
+        returnKeyType="next"
+      />
+      <ControlledInput
+        name="password"
+        control={control}
+        placeholder="Senha"
+        keyboardType="default"
+        returnKeyType="done"
+        secureTextEntry
+      />
+      <PressableText
+        onPressHandler={onForgotPasswordPressHandler}
+        pressableStyle={styles.forgotPasswordWrapper}
+        textStyle={styles.forgotPasswordText}
+      >
+        Esqueci minha senha
+      </PressableText>
 
-          <BrandButton
-            paddingOverride={{
-              paddingHorizontal: 10,
-            }}
-            onPressHandler={handleSubmit}
-          >
-            Entrar
-          </BrandButton>
-        </View>
-      )}
-    </Formik>
+      <BrandButton
+        paddingOverride={{
+          paddingHorizontal: 10,
+        }}
+        onPressHandler={handleSubmit(handleLoginFormSubmit)}
+      >
+        Entrar
+      </BrandButton>
+    </View>
   )
 }
