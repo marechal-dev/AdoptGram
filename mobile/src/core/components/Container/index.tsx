@@ -1,7 +1,6 @@
 import {
   Keyboard,
   KeyboardAvoidingView,
-  StyleSheet,
   TouchableWithoutFeedback,
   View,
   ViewStyle,

@@ -6,9 +6,9 @@ import { styles } from "./style"
 import { Container } from "../../core/components/Container"
 import { FormToggleButton } from "./components/FormToggleButton"
 import { CommonUserForm } from "./forms/CommonUserForm"
-import { NgoForm } from "./forms/NgoForm"
+import { OrgForm } from "./forms/OrgForm"
 
-type CurrentForm = "CommonUser" | "NGO"
+type CurrentForm = "CommonUser" | "ORG"
 
 export function RegisterNewAccountScreen() {
   const [currentForm, setCurrentForm] = useState<CurrentForm>("CommonUser")
@@ -27,12 +27,12 @@ export function RegisterNewAccountScreen() {
         <FormToggleButton
           icon="heart"
           text="Sou ONG"
-          isSelected={currentForm === "NGO" ? true : false}
-          onPressHandler={() => setCurrentForm("NGO")}
+          isSelected={currentForm === "ORG" ? true : false}
+          onPressHandler={() => setCurrentForm("ORG")}
         />
       </View>
 
-      {currentForm === "CommonUser" ? <CommonUserForm /> : <NgoForm />}
+      {currentForm === "CommonUser" ? <CommonUserForm /> : <OrgForm />}
     </Container>
   )
 }

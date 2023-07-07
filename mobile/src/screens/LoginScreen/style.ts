@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     paddingTop: 82,
-    paddingHorizontal: 36,
+    paddingHorizontal: 42,
   },
   loginImage: {
     minWidth: 280,

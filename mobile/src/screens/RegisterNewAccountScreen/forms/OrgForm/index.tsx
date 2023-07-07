@@ -1,10 +1,11 @@
 import { View, Text } from "react-native"
-import { styles } from "../styles"
-import { z } from "zod"
 import { useForm } from "react-hook-form"
+import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 
-const registerNgoSchemaValidator = z
+import { styles } from "../styles"
+
+const registerOrgSchemaValidator = z
   .object({
     name: z.string().min(2),
     surname: z.string().min(2),
@@ -24,15 +25,15 @@ const registerNgoSchemaValidator = z
     },
   )
 
-type RegisterNgoFormData = z.infer<typeof registerNgoSchemaValidator>
+type RegisterOrgFormData = z.infer<typeof registerOrgSchemaValidator>
 
-export function NgoForm() {
+export function OrgForm() {
   const {
     control,
     formState: { errors },
     handleSubmit,
-  } = useForm<RegisterNgoFormData>({
-    resolver: zodResolver(registerNgoSchemaValidator),
+  } = useForm<RegisterOrgFormData>({
+    resolver: zodResolver(registerOrgSchemaValidator),
   })
 
   return (
