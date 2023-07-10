@@ -1,31 +1,26 @@
-import { StyleSheet, TextStyle } from "react-native";
+import { StyleSheet } from "react-native";
 import { colors } from "../../../theme/colors";
 
-export const styles = StyleSheet.create<{
-  brandInputContainer: {},
-  brandInputText: TextStyle,
-}>({
-  brandInputContainer: {
+export const styles = StyleSheet.create({
+  brandInputRoot: {
+    flexDirection: "row",
+    alignItems: "center",
+    columnGap: 8,
     minWidth: 280,
     width: "100%",
     minHeight: 48,
-    maxHeight: 58,
     backgroundColor: "white",
-    paddingVertical: 10,
-    paddingLeft: 14,
-    justifyContent: "center",
+    paddingVertical: 8,
+    paddingHorizontal: 16,
     borderRadius: 12,
-    elevation: 6,
+    elevation: 4,
   },
-  brandInputText: {
-    justifyContent: "center",
-    width: "100%",
+  brandInputInput: {
+    flex: 1,
     height: "100%",
     fontFamily: "Poppins",
     fontSize: 14,
-    lineHeight: 30,
     color: colors.text.mainText90,
     textAlign: "left",
-    alignSelf: "center",
   },
 });

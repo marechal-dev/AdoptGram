@@ -10,6 +10,8 @@ import { ControlledInput } from "../../core/components/ControlledInput/Controlle
 
 import { styles } from "./style"
 import { useEffect } from "react"
+import { BrandInput } from "../../core/components/BrandInput"
+import { colors } from "../../theme/colors"
 
 const loginFormSchema = z.object({
   email: z.string().email(),
@@ -35,19 +37,35 @@ export function LoginForm({ onForgotPasswordPressHandler }: LoginFormProps) {
       <ControlledInput
         name="email"
         control={control}
-        placeholder="Email"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        returnKeyType="next"
-      />
+        inputProps={{
+          placeholder: "Digite seu E-mail",
+          keyboardType: "email-address",
+          autoCapitalize: "none",
+          returnKeyType: "next",
+        }}
+      >
+        <BrandInput.Icon
+          iconName="at-sign"
+          size={24}
+          color={colors.brand.blue800}
+        />
+      </ControlledInput>
       <ControlledInput
         name="password"
         control={control}
-        placeholder="Senha"
-        keyboardType="default"
-        returnKeyType="done"
-        secureTextEntry
-      />
+        inputProps={{
+          placeholder: "Digite sua Senha",
+          keyboardType: "default",
+          returnKeyType: "done",
+          secureTextEntry: true,
+        }}
+      >
+        <BrandInput.Icon
+          iconName="lock"
+          size={24}
+          color={colors.brand.blue800}
+        />
+      </ControlledInput>
       <PressableText
         onPressHandler={onForgotPasswordPressHandler}
         pressableStyle={styles.forgotPasswordWrapper}
