@@ -9,6 +9,7 @@ import { BrandButton } from "../../core/components/BrandButton/BrandButton"
 import { ControlledInput } from "../../core/components/ControlledInput/ControlledInput"
 
 import { styles } from "./style"
+import { useEffect } from "react"
 
 const loginFormSchema = z.object({
   email: z.string().email(),
@@ -36,6 +37,7 @@ export function LoginForm({ onForgotPasswordPressHandler }: LoginFormProps) {
         control={control}
         placeholder="Email"
         keyboardType="email-address"
+        autoCapitalize="none"
         returnKeyType="next"
       />
       <ControlledInput
