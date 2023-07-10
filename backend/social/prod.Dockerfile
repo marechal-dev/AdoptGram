@@ -6,7 +6,9 @@ WORKDIR /usr/app
 
 COPY package*.json .
 
-RUN npm ci
+RUN npm install
+
+RUN npm install prisma
 
 COPY . .
 

@@ -1,5 +1,6 @@
-import env from '@Configs/env';
 import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
+
+import env from '@Configs/env';
 
 const corsOptions: CorsOptions =
   env.NODE_ENV === 'development'

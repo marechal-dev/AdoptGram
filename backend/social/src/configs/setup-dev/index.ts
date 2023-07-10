@@ -1,7 +1,10 @@
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { patchNestJsSwagger } from 'nestjs-zod';
 
 function setupSwagger(app: NestFastifyApplication) {
+  patchNestJsSwagger();
+
   const config = new DocumentBuilder()
     .setTitle('AdoptGram Main API')
     .setDescription('AdoptGram Main API Documentation.')

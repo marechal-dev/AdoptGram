@@ -7,11 +7,11 @@ export class Cpf {
 
   public static createFromText(text: string): Cpf {
     if (!this.isLengthValid(text)) {
-      // Do something
+      throw new Error('Invalid length for CPF');
     }
 
     if (!this.isFormatValid(text)) {
-      // Do something
+      throw new Error('Invalid format for CPF');
     }
 
     const cpf = new Cpf(text);

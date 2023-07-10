@@ -1,22 +1,32 @@
 import { UniqueEntityId } from '@Core/entities/value-objects/unique-entity-id';
 import { User, UserProps } from './user';
 import { Cpf } from './value-objects/cpf';
+import { Follow } from './follow';
+import { Optional } from '@Core/types/optional';
 
 interface CommonUserProps extends UserProps {
   firstName: string;
-  socialFirstName?: string;
   surname: string;
   cpf: Cpf;
+  following: Follow[];
 }
 
 export class CommonUser extends User<CommonUserProps> {
   public static create(
-    props: CommonUserProps,
+    props: Optional<CommonUserProps, 'following'>,
     id?: UniqueEntityId,
     createdAt?: Date,
     updatedAt?: Date,
   ): CommonUser {
-    const commonUser = new CommonUser(props, id, createdAt, updatedAt);
+    const commonUser = new CommonUser(
+      {
+        ...props,
+        following: props.following ?? [],
+      },
+      id,
+      createdAt,
+      updatedAt,
+    );
 
     return commonUser;
   }
@@ -27,15 +37,6 @@ export class CommonUser extends User<CommonUserProps> {
 
   public set firstName(value: string) {
     this.props.firstName = value;
-    this.touch();
-  }
-
-  public get socialFirstName(): string | undefined {
-    return this.props.socialFirstName;
-  }
-
-  public set socialFirstName(value: string) {
-    this.props.socialFirstName = value;
     this.touch();
   }
 

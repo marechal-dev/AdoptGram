@@ -2,6 +2,8 @@ FROM node:lts-alpine
 
 RUN apk install musl
 
+ENV NODE_ENV development
+
 WORKDIR /usr/app
 
 COPY package*.json .
