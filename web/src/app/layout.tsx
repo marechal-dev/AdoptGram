@@ -1,26 +1,27 @@
-import "./globals.css";
+import './globals.css';
 
-import { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Metadata } from 'next';
+import { Poppins } from 'next/font/google';
 
 const poppins = Poppins({
-  weight: ["400", "700"],
+  weight: ['400', '700'],
   preload: true,
-  subsets: ["latin"],
-  fallback: ["sans-serif"],
+  subsets: ['latin'],
+  fallback: ['sans-serif'],
+  display: 'swap'
 });
 
 export const metadata: Metadata = {
-  title: "AdoptGram",
+  title: 'AdoptGram',
   description:
-    "O Website que te ajudará a encontrar seu novo melhor amigo 🐶🐱❤",
-  applicationName: "AdoptGram",
+    'O Website que te ajudará a encontrar seu novo melhor amigo 🐶🐱❤',
+  applicationName: 'AdoptGram',
   viewport: {
-    width: "device-width",
+    width: 'device-width',
     initialScale: 1,
   },
-  creator: "Pietro Piva Vieira",
-  publisher: "DevArmy Software",
+  creator: 'Pietro Piva Vieira',
+  publisher: 'DevArmy Software',
 };
 
 export default function RootLayout({
